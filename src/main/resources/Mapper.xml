@@ -3,11 +3,7 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="Mapper">
-	<select id="login" parameterType="String" resultType="Pack.dto.UserDTO">
-		select * from user where id = #{id}
-	</select>
-	
+<mapper namespace="Mapper">	
 	<insert id="signUp" parameterType="Pack.dto.UserDTO">
 		insert into user value(null, #{name}, #{id}, #{pw})
 	</insert>
@@ -37,20 +33,4 @@
 	<update id="boardUpdate" parameterType="Pack.dto.BoardDTO">
 		update board set title=#{title}, contents=#{contents} where boardNo=#{boardNo}
 	</update>
-	
-	<insert id="newComment" parameterType="Pack.dto.CommentDTO">
-		insert into comment values(null, #{boardNo}, #{userNo}, #{comment}, now())
-	</insert>
-	
-	<select id="commentList" parameterType="int" resultType="Pack.dto.CommentDTO">
-		select name, comment, date, id, user.userNo, commentNo
-		from comment
-		join user on user.userNo = comment.userNo
-		where boardNo = #{boardNo}
-		order by commentNo;
-	</select>
-	
-	<delete id="commentDelete" parameterType="int">
-		delete from comment where commentNo = #{commentNo}
-	</delete>
 </mapper>

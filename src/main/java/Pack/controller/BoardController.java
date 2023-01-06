@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import Pack.dto.BoardDTO;
-import Pack.dto.CommentDTO;
 import Pack.service.BoardService;
 
 @RestController
@@ -41,23 +40,6 @@ public class BoardController {
 	@PostMapping("/updateBoard")
 	public void updateBoardPost(@RequestBody BoardDTO dto) {
 		service.boardUpdate(dto);		
-	}
-	
-	@PostMapping("/newComment")
-	public void newComment(@RequestBody CommentDTO dto) {
-		service.newComment(dto);
-	}
-	
-	@GetMapping("/commentList/{boardNo}")
-	public Object commentList(@PathVariable int boardNo) {
-		System.out.println("test" + boardNo);
-		return service.commentList(boardNo);
-	}
-	
-	@PostMapping("/commentDelete/{commentNo}")
-	public void commentDelete(@PathVariable int commentNo) {
-		System.out.println("제발 되라 "+commentNo);
-		service.commentDelete(commentNo);
 	}
 	
 }
